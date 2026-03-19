@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>For You ❤️</title>
+
+<style>
+body {
+  background: linear-gradient(to bottom, #ffeef2, #fff);
+  font-family: Arial, sans-serif;
+  text-align: center;
+  padding-top: 120px;
+  color: #333;
+  overflow: hidden;
+}
+
+#text {
+  font-size: 26px;
+  margin: 20px;
+  opacity: 0;
+  transition: opacity 1s;
+}
+
+button {
+  padding: 12px 24px;
+  font-size: 16px;
+  border: none;
+  background-color: #ff8fa3;
+  color: white;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #ff6f91;
+}
+
+.heart {
+  position: absolute;
+  color: pink;
+  animation: floatUp 5s linear infinite;
+}
+
+@keyframes floatUp {
+  from {
+    transform: translateY(100vh);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(-10vh);
+    opacity: 0;
+  }
+}
+
+#finalButton {
+  display: none;
+  margin-top: 30px;
+}
+</style>
+</head>
+
+<body>
+
+<div id="text"></div>
+
+<button id="startBtn" onclick="startStory()">Click me 🤍</button>
+
+<div id="finalButton">
+  <button onclick="window.location.href='https://www.notion.so/For-You-3282fed2922880c08c14e64c3a84230a?source=copy_link'">
+    Open your space 🤍
+  </button>
+</div>
+
+<script>
+const messages = [
+  "Hey you 🤍",
+  "I made this for you...",
+  "I know things have been really hard lately",
+  "You've been so strong for everyone",
+  "But you don’t always have to be strong",
+  "It’s okay to be tired",
+  "It’s okay to rest",
+  "I’m really proud of you",
+  "Even the small things you do matter so much",
+  "And even if we only get a little time together...",
+  "It means everything to me",
+  "I just want you to feel safe and cared for",
+  "Not just today, but every day",
+  "Happy Birthday, my love ❤️",
+  "I’ll always be here",
+  "I made you something you can come back to...",
+  "Open it when you’re ready 🤍"
+];
+
+let index = 0;
+
+function startStory() {
+  document.getElementById("startBtn").style.display = "none";
+  showMessage();
+}
+
+function showMessage() {
+  if (index < messages.length) {
+    const textEl = document.getElementById("text");
+    textEl.style.opacity = 0;
+
+    setTimeout(() => {
+      textEl.innerText = messages[index];
+      textEl.style.opacity = 1;
+      index++;
+    }, 500);
+
+    setTimeout(showMessage, 3000);
+  } else {
+    document.getElementById("finalButton").style.display = "block";
+  }
+}
+
+// floating hearts
+function createHeart() {
+  const heart = document.createElement("div");
+  heart.classList.add("heart");
+  heart.innerText = "❤️";
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.fontSize = (Math.random() * 20 + 10) + "px";
+  document.body.appendChild(heart);
+
+  setTimeout(() => {
+    heart.remove();
+  }, 5000);
+}
+
+setInterval(createHeart, 500);
+</script>
+
+</body>
+</html>
